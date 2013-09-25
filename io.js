@@ -1,5 +1,5 @@
 
-require("pinf-io-daemonize/io").forModule(module, {
+module.exports.overlays = {
     name: "php",
     defaultConfig: {
         "httpd": {
@@ -47,4 +47,6 @@ require("pinf-io-daemonize/io").forModule(module, {
             args.join(" ")
         ].join("\n");
     }
-});
+};
+
+require("pinf-io-daemonize/io").forModule(module, module.exports.overlays);
