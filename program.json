@@ -1,0 +1,11 @@
+{
+	"boot": {
+		"package": "./package.json"
+	},
+	"config": {
+		"github.com/pinf-io/io.pinf.php": {
+			"routerScript": "$__DIRNAME/test/assets/router.php",
+			"documentRoot": ""
+		}
+	}
+}

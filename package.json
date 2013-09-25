@@ -1,0 +1,52 @@
+{
+  "uid": "github.com/pinf-io/io.pinf.php",
+  "name": "io.pinf.php",
+  "version": "0.1.0",
+  "pm": "sm",
+  "engines": {
+    "node": "~0.10.15"
+  },
+  "bin": {
+    "php": "./.sm/bin/php"
+  },
+  "mappings": {
+    "php": [
+      "archive",
+      "http://www.php.net/distributions/php-5.5.3.tar.gz",
+      {
+        "descriptor": {
+          "pm": "make",
+          "bin": {
+            "php": "./sapi/cli/php"
+          }
+        },
+        "if": {
+          "github.com/pinf-io/io.pinf.mysql": {
+            "install": {
+              "args": [
+                "--with-mysql=%package.dirpath%",
+                "--enable-opcache=no"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "pinf-io-daemonize": "github.com/pinf-io/pinf-io-daemonize/~0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0"
+  },
+  "scripts": {
+    "start": "node io start",
+    "stop": "node io stop",
+    "test": "node_modules/.bin/mocha --reporter list test/*.js"
+  },
+  "on": {
+    "pinf/0/runtime/control/0#events/start": "$__DIRNAME/on.js",
+    "pinf/0/runtime/control/0#events/stop": "$__DIRNAME/on.js"
+  },
+  "dependencies": {
+    "request": "~2.27.0"
+  }
+}
